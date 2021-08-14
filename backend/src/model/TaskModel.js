@@ -1,4 +1,4 @@
-const mongoose = require('@/config/mongoose/db')
+const mongoose = require('../config/mongoose/db')
 const Schema = mongoose.Schema
 
 const TaskSchema = new Schema({
@@ -11,4 +11,4 @@ const TaskSchema = new Schema({
     createdAt: { type: Date, default: Date.now() }
 })
 
-module.exports = mongoose.module('task', TaskSchema)
+module.exports = mongoose.model('task', TaskSchema)
