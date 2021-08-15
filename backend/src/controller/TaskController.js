@@ -32,7 +32,7 @@ class TasckController {
   }
 
   async all(request, response) {
-    await TaskModel.find({ macaddress: { '$in': request.body.macaddress } })
+    await TaskModel.find({ macaddress: { '$in': request.params.macaddress } })
       .sort('when')
       .then(tasks => response.status(200).json(tasks))
       .catch(err => response.status(500).json({ message: err }))
@@ -66,7 +66,7 @@ class TasckController {
     await TaskModel
       .find({
         'when': { '$lt': current },
-        'macaddress': { '$in': request.body.macaddress }
+        'macaddress': { '$in': request.params.macaddress }
       })
       .sort('when')
       .then(tasks => response.status(200).json(tasks))
@@ -76,7 +76,7 @@ class TasckController {
   async today(request, response) {
     await TaskModel
       .find({
-        'macaddress': { '$in': request.body.macaddress },
+        'macaddress': { '$in': request.params.macaddress },
         'when': { '$gte': startOfDay(current), '$lte': endOfDay(current) },
       })
       .sort('when')
@@ -87,7 +87,7 @@ class TasckController {
   async week(request, response) {
     await TaskModel
       .find({
-        'macaddress': { '$in': request.body.macaddress },
+        'macaddress': { '$in': request.params.macaddress },
         'when': { '$gte': startOfWeek(current), '$lte': endOfWeek(current) },
       })
       .sort('when')
@@ -98,7 +98,7 @@ class TasckController {
   async month(request, response) {
     await TaskModel
       .find({
-        'macaddress': { '$in': request.body.macaddress },
+        'macaddress': { '$in': request.params.macaddress },
         'when': { '$gte': startOfMonth(current), '$lte': endOfMonth(current) },
       })
       .sort('when')
@@ -109,7 +109,7 @@ class TasckController {
   async year(request, response) {
     await TaskModel
       .find({
-        'macaddress': { '$in': request.body.macaddress },
+        'macaddress': { '$in': request.params.macaddress },
         'when': { '$gte': startOfYear(current), '$lte': endOfYear(current) },
       })
       .sort('when')
