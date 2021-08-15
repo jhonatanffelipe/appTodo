@@ -1,3 +1,13 @@
+const {
+  startOfDay,
+  endOfDay,
+  startOfWeek,
+  endOfWeek,
+  startOfMonth,
+  endOfMonth,
+  startOfYear,
+  endOfYear } = require('date-fns')
+  
 const TaskModel = require('../model/TaskModel')
 
 const current = new Date()
@@ -62,6 +72,51 @@ class TasckController {
       .then(tasks => response.status(200).json(tasks))
       .catch(err => response.status(500).json({ message: err }))
   }
+
+  async today(request, response) {
+    await TaskModel
+      .find({
+        'macaddress': { '$in': request.body.macaddress },
+        'when': { '$gte': startOfDay(current), '$lte': endOfDay(current) },
+      })
+      .sort('when')
+      .then(tasks => response.status(200).json(tasks))
+      .catch(err => response.status(500).json({ message: err }))
+  }
+
+  async week(request, response) {
+    await TaskModel
+      .find({
+        'macaddress': { '$in': request.body.macaddress },
+        'when': { '$gte': startOfWeek(current), '$lte': endOfWeek(current) },
+      })
+      .sort('when')
+      .then(tasks => response.status(200).json(tasks))
+      .catch(err => response.status(500).json({ message: err }))
+  }
+
+  async month(request, response) {
+    await TaskModel
+      .find({
+        'macaddress': { '$in': request.body.macaddress },
+        'when': { '$gte': startOfMonth(current), '$lte': endOfMonth(current) },
+      })
+      .sort('when')
+      .then(tasks => response.status(200).json(tasks))
+      .catch(err => response.status(500).json({ message: err }))
+  }
+
+  async year(request, response) {
+    await TaskModel
+      .find({
+        'macaddress': { '$in': request.body.macaddress },
+        'when': { '$gte': startOfYear(current), '$lte': endOfYear(current) },
+      })
+      .sort('when')
+      .then(tasks => response.status(200).json(tasks))
+      .catch(err => response.status(500).json({ message: err }))
+  }
+
 
 }
 
