@@ -36,6 +36,22 @@ class TasckController {
       })
       .catch(err => response.status(500).json({ message: err }))
   }
+
+  async delete(request, response) {
+    await TaskModel.deleteOne({ '_id': request.params.id })
+      .then(() => response.status(200).json({ message: 'ok' }))
+      .catch(err => response.status(500).json({ message: err }))
+  }
+
+  async done(request, response) {
+    await TaskModel.findByIdAndUpdate(
+      { '_id': request.params.id },
+      { 'done': request.params.done },
+      { new: true })
+      .then(updatedTask => response.status(200).json(updatedTask))
+      .catch(err => response.status(500).json({ message: err }))
+  }
+
 }
 
 module.exports = new TasckController()
