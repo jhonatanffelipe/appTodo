@@ -21,6 +21,13 @@ class TasckController {
 
   }
 
+  async all(request, response) {
+    await TaskModel.find({ macaddress: { '$in': request.body.macaddress } })
+      .sort('when')
+      .then(tasks => response.status(200).json(tasks))
+      .catch(err => response.status(500).json({ message: err }))
+  }
+
 }
 
 module.exports = new TasckController()
