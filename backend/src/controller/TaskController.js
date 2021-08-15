@@ -28,6 +28,14 @@ class TasckController {
       .catch(err => response.status(500).json({ message: err }))
   }
 
+  async show(request, response) {
+    await TaskModel.findById(request.params.id)
+      .then(task => {
+        if (task) return response.status(200).json(task)
+        return response.status(404).json({ message: 'task not found' })
+      })
+      .catch(err => response.status(500).json({ message: err }))
+  }
 }
 
 module.exports = new TasckController()

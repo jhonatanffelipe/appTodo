@@ -6,6 +6,7 @@ const MacAddressValidation = require('../middlewares/MacAddressValidation')
 
 const router = express.Router()
 
+router.get('/:id', TaskController.show)
 router.post('/', TaskValidation, TaskController.create)
 router.put('/:id', TaskValidation, TaskController.update)
 router.get('/filter/all', MacAddressValidation, TaskController.all)
