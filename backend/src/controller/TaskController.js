@@ -14,6 +14,13 @@ class TasckController {
       })
   }
 
+  async update(request, response) {
+    await TaskModel.findByIdAndUpdate({ '_id': request.params.id }, request.body, { new: true })
+      .then(updatedTask => response.status(200).json(updatedTask))
+      .catch(err => response.status(500).json({ message: err }))
+
+  }
+
 }
 
 module.exports = new TasckController()
