@@ -1,19 +1,70 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-    width: 100%;
-    height: 70px;
-    background: #999;
+  width: 100%;
+  height: 70px;
+  background: #260B9E;
+  border-bottom: 4px solid #43D9C7;
 
-    display: flex;
+  display: flex;
 `
 
 export const LeftSide = styled.div`
-    width: 50%;
-    height: 70px;
+  width: 50%;
+  height: 70px;
+
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+
+  img {
+    width: 160px;
+  }
 `
 
 export const RightSidde = styled.div`
-    width: 50%;
-    height: 70px;
+  width: 50%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  a {
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 0 10px;
+
+    &:hover{
+      color: #43D9C7;
+    }
+  }
+
+  #notification{
+    img{
+      width: 25px;
+      height: 100%;
+    }
+    span{
+      color: #43D9C7;
+      background: #FFF;
+      border: none;
+      padding: 3px 9px;
+      border-radius: 50%;
+      position: relative;
+      top: -20px;
+      right: 10px;
+    }
+
+    &:hover{
+      opacity: 40%;
+    }
+  }
+
+  .divider::after{
+    content: "|";
+    margin: 0 10px;
+    color: #FFF;
+    font-weight: bold;
+  }
 `
