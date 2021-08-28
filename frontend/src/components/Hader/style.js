@@ -28,6 +28,7 @@ export const RightSidde = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  padding-right: 20px;
 
   a {
     color: #FFF;
@@ -51,9 +52,9 @@ export const RightSidde = styled.div`
       border: none;
       padding: 3px 9px;
       border-radius: 50%;
-      position: relative;
-      top: -20px;
-      right: 10px;
+      position: fixed;
+      top: 10px;
+      right: 15px;
     }
 
     &:hover{

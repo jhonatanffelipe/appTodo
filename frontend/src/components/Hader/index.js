@@ -21,7 +21,7 @@ function Header() {
         <span className="divider"></span>
         <a id="notification" href="#">
         <img src={bell} alt="Notificação" />
-        <span>1</span>
+        <span>9</span>
         </a>
       </S.RightSidde>
     </S.Container>
