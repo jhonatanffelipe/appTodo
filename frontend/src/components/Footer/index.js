@@ -1,7 +1,11 @@
 import React from "react";
+import * as S from './style'
+
 function Footer() {
   return (
-    <h1>Footer</h1>
+    <S.Container>
+      <span>Todo - Organizando sua vida</span>
+    </S.Container>
   );
 }
 
