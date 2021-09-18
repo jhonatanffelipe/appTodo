@@ -55,6 +55,7 @@ function Home() {
               key={task._id}
               title={task.title}
               when={task.when}
+              type={task.type}
             />
           ))
         }
