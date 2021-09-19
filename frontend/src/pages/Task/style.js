@@ -54,7 +54,8 @@ export const Input = styled.div`
     font-size: 16px;
     padding: 15px;
     border: none;
-    border-bottom: 1px solid  #43D9C7;
+    border-bottom: 3px solid  #43D9C7;
+    border-radius: 5px;
   }
 `
 
