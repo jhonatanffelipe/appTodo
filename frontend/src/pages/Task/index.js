@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom"
 import { format } from "date-fns"
 import * as S from './style'
 
@@ -8,6 +9,7 @@ import Footer from '../../components/Footer'
 import TypeIcons from "../../utils/typeIcons";
 
 function Task({ match }) {
+  const [redirect, setRedirect] = useState(false)
   const [lateCount, setLateCount] = useState()
   const [type, setType] = useState()
   const [id, setID] = useState();
@@ -22,7 +24,7 @@ function Task({ match }) {
   async function lateVerify() {
     await api.get(`/task/filter/late/12:11:11:11:11:11`)
       .then(response => {
-        setLateCount(15)
+        setLateCount(response.data.length)
       })
   }
 
@@ -38,15 +40,28 @@ function Task({ match }) {
   }
 
   async function Save() {
-    await api.post(`/task`, {
-      macaddress,
-      type,
-      title,
-      description,
-      when: `${date}T${hour}:00.000`
-    }).then(() => {
-      alert('Tarefa Cadastrada com sucesso')
-    })
+    if (match.params.id) {
+      await api.put(`/task/${match.params.id}`, {
+        macaddress,
+        done,
+        type,
+        title,
+        description,
+        when: `${date}T${hour}:00.000`
+      }).then(() => {
+        setRedirect(true)
+      })
+    } else {
+      await api.post(`/task`, {
+        macaddress,
+        type,
+        title,
+        description,
+        when: `${date}T${hour}:00.000`
+      }).then(() => {
+        setRedirect(true)
+      })
+    }
   }
 
 
@@ -57,6 +72,7 @@ function Task({ match }) {
 
   return (
     <S.Container>
+      {redirect && <Redirect to="/" />}
       <Header lateCount={lateCount} />
       <S.Form>
         <S.TypeIcons>
