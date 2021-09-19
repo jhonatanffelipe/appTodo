@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom"
 import { format } from "date-fns"
@@ -37,7 +38,7 @@ function Task({ match }) {
         setDone(response.data.done)
         setDate(format(new Date(response.data.when), 'yyyy-MM-dd'))
         setHour(format(new Date(response.data.when), 'HH:mm'))
-        
+
       })
   }
 
@@ -80,6 +81,14 @@ function Task({ match }) {
     }
   }
 
+  async function Remove() {
+    const res = confirm('Deseja realmente remover a tarefa?')
+
+    if (res) {
+      await api.delete(`/task/${match.params.id}`)
+        .then(() => setRedirect(true))
+    }
+  }
 
   useEffect(() => {
     LoadTaskDetails()
@@ -127,7 +136,8 @@ function Task({ match }) {
             <span>CONCLUÍDO</span>
           </div>
 
-          <button type="button">EXCUIR</button>
+          {match.params.id && <button type="button" onClick={Remove}>EXCUIR</button>}
+
         </S.Options>
 
         <S.Save>
