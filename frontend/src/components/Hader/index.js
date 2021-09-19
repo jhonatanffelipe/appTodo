@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
 import * as S from './style'
 
@@ -9,15 +10,17 @@ function Header({ lateCount, clickNotification }) {
   return (
     <S.Container>
       <S.LeftSide>
+        <Link to="/">
         <img src={logo} alt="Logo" />
+        </Link>
       </S.LeftSide>
 
       <S.RightSidde>
-        <a href="#">INÍCIO</a>
+        <Link to="/">INÍCIO</Link>
         <span className="divider"></span>
-        <a href="#">NOVA TAREFA</a>
+        <Link to="/task">NOVA TAREFA</Link>
         <span className="divider"></span>
-        <a href="#">SINCRONIZAR</a>
+        <a href="/qrcode">SINCRONIZAR</a>
         <span className="divider"></span>
         <button id="notification" onClick={clickNotification}>
           <img src={bell} alt="Notificação" />

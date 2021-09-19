@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Task from './pages/Task';
+import Routes from './routes';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Task />
+    <Routes />
   </React.StrictMode>,
   document.getElementById('root')
 );
