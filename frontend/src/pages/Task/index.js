@@ -34,12 +34,28 @@ function Task({ match }) {
         setType(response.data.type)
         setTitle(response.data.title)
         setDescription(response.data.description)
+        setDone(response.data.done)
         setDate(format(new Date(response.data.when), 'yyyy-MM-dd'))
         setHour(format(new Date(response.data.when), 'HH:mm'))
+        
       })
   }
 
   async function Save() {
+    if (!title) {
+      return alert("Voce precisa informar o título da tarefa")
+    } else if (!type) {
+      return alert("Voce precisa informar o tipo da tarefa")
+    } else if (!description) {
+      return alert("Voce precisa informar a descrição da tarefa")
+    } else if (!date) {
+      return alert("Voce precisa informar a data da tarefa")
+    } else if (!hour) {
+      return alert("Voce precisa informar a hora da tarefa")
+    }
+
+
+
     if (match.params.id) {
       await api.put(`/task/${match.params.id}`, {
         macaddress,
