@@ -46,6 +46,8 @@ export const RightSidde = styled.div`
     background: transparent;
     border: none;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
   }
 
   #notification{
@@ -57,11 +59,11 @@ export const RightSidde = styled.div`
       color: #43D9C7;
       background: #FFF;
       border: none;
-      padding: 3px 9px;
+      padding: 3px 7px;
       border-radius: 50%;
-      position: fixed;
-      top: 10px;
-      right: 15px;
+      position: relative;
+      right: 10px;
+      top: -5px;
     }
 
     &:hover{

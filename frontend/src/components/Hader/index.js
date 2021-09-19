@@ -38,10 +38,15 @@ function Header({ clickNotification }) {
         <span className="divider"></span>
         <Link to="/qrcode">SINCRONIZAR</Link>
         <span className="divider"></span>
-        <button id="notification" onClick={clickNotification}>
-          <img src={bell} alt="Notificação" />
-          <span>{lateCount}</span>
-        </button>
+
+
+
+        <Link to="/">
+          <button id="notification" onClick={clickNotification}>
+            <img src={bell} alt="Notificação" />
+            <span>{lateCount}</span>
+          </button>
+        </Link>
 
       </S.RightSidde>
     </S.Container>
