@@ -26,7 +26,7 @@ export const TopCard = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  
+  text-align: center;
   img {
     width: 50px;
     height: 50px;
