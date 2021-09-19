@@ -8,11 +8,11 @@ import api from '../../services/api'
 import Header from '../../components/Hader'
 import Footer from '../../components/Footer'
 import TypeIcons from "../../utils/typeIcons";
+import isConnected from "../../utils/isConnected";
 
 function Task({ match }) {
   const [redirect, setRedirect] = useState(false)
   const [type, setType] = useState()
-  const [id, setID] = useState();
   const [done, setDone] = useState(false)
   const [title, setTitle] = useState()
   const [description, setDescription] = useState();
@@ -82,6 +82,9 @@ function Task({ match }) {
   }
 
   useEffect(() => {
+    if (!isConnected) {
+      setRedirect(true)
+    }
     LoadTaskDetails()
   }, [])
 

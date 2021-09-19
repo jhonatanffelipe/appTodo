@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-globals */
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom"
 import Qr from "qrcode.react"
 import * as S from './style'
 
@@ -7,10 +8,20 @@ import Header from '../../components/Hader'
 import Footer from '../../components/Footer'
 
 function QRCode() {
+  const [mac, setMac] = useState()
+  const [redirect, setRedirect] = useState()
+
+  async function SaveMac() {
+    await localStorage.setItem('@todo/macaddress', mac)
+    setRedirect(true)
+    window.location.reload()
+  }
+
+
   return (
     <S.Container>
-      <Header />
-
+      {redirect && <Redirect to="/" />}
+      <Header showNotification={false}/>
       <S.Content>
         <h1>CAPTURE O QRCODE PELO APP</h1>
         <p>sua atividade serão sicronizadas as do celular.</p>
@@ -20,13 +31,9 @@ function QRCode() {
 
         <S.ValidationCode>
           <span>Digite a numeração que apareceu no celular.</span>
-          <input type="text" />
-          <button type="button">SINCRONIZAR</button>
+          <input type="text" onChange={e => setMac(e.target.value)} value={mac} />
+          <button type="button" onClick={SaveMac}>SINCRONIZAR</button>
         </S.ValidationCode>
-
-
-
-
       </S.Content>
 
       <Footer />

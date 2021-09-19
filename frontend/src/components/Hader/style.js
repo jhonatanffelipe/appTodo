@@ -30,12 +30,13 @@ export const RightSidde = styled.div`
   justify-content: flex-end;
   padding-right: 20px;
 
-  a {
+  a, .logout {
     color: #FFF;
     font-weight: bold;
     text-decoration: none;
     margin: 0 10px;
-
+    font-size: 18px;
+    padding: 5px;
 
     &:hover{
       color: #43D9C7;
