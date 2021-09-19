@@ -25,6 +25,11 @@ export const Content = styled.div`
     justify-content: center;
     margin-top: 20px;
     width: 100%;
+
+    a {
+        text-decoration: none;
+        color: #000;
+    }
 `
 
 export const Title = styled.div`

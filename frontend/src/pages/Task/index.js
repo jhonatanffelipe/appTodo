@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { format } from "date-fns"
 import * as S from './style'
 
 import api from '../../services/api'
@@ -6,7 +7,7 @@ import Header from '../../components/Hader'
 import Footer from '../../components/Footer'
 import TypeIcons from "../../utils/typeIcons";
 
-function Home() {
+function Task({ match }) {
   const [lateCount, setLateCount] = useState()
   const [type, setType] = useState()
   const [id, setID] = useState();
@@ -21,7 +22,18 @@ function Home() {
   async function lateVerify() {
     await api.get(`/task/filter/late/12:11:11:11:11:11`)
       .then(response => {
-        setLateCount(response.data.length)
+        setLateCount(15)
+      })
+  }
+
+  async function LoadTaskDetails() {
+    await api.get(`/task/${match.params.id}`)
+      .then(response => {
+        setType(response.data.type)
+        setTitle(response.data.title)
+        setDescription(response.data.description)
+        setDate(format(new Date(response.data.when), 'yyyy-MM-dd'))
+        setHour(format(new Date(response.data.when), 'HH:mm'))
       })
   }
 
@@ -39,6 +51,7 @@ function Home() {
 
 
   useEffect(() => {
+    LoadTaskDetails()
     lateVerify()
   }, [])
 
@@ -95,4 +108,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Task;
