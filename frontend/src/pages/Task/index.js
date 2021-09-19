@@ -1,0 +1,77 @@
+import React, { useState, useEffect } from "react";
+import * as S from './style'
+
+import api from '../../services/api'
+import Header from '../../components/Hader'
+import Footer from '../../components/Footer'
+import TypeIcons from "../../utils/typeIcons";
+
+function Home() {
+  const [lateCount, setLateCount] = useState()
+  const [type, setType] = useState()
+
+  async function lateVerify() {
+    await api.get(`/task/filter/late/12:11:11:11:11:11`)
+      .then(response => {
+        setLateCount(response.data.length)
+      })
+  }
+
+  useEffect(() => {
+    lateVerify()
+  }, [])
+
+  return (
+    <S.Container>
+      <Header lateCount={lateCount} />
+      <S.Form>
+        <S.TypeIcons>
+          {TypeIcons.map((icon, index) => (
+            index > 0 &&
+            <button type="button" onClick={() => setType(index)}>
+              <img src={icon} alt="Tipo da tarefa"
+                className={type && type !== index && 'inative'} />
+            </button>
+          ))}
+        </S.TypeIcons>
+
+        <S.Input>
+          <span>Título</span>
+          <input type="text" placeholder="Título da tarefa" />
+        </S.Input>
+
+        <S.TextArea>
+          <span>Detalhes</span>
+          <textarea rows={5} type="text" placeholder="Detalhes da tarefa" />
+        </S.TextArea>
+
+        <S.Input>
+          <span>Data</span>
+          <input type="date" placeholder="Título da tarefa" />
+        </S.Input>
+
+        <S.Input>
+          <span>Hora</span>
+          <input type="time" placeholder="Título da tarefa" />
+        </S.Input>
+
+        <S.Options>
+          <div>
+            <input type="checkbox" />
+            <span>CONCLUÍDO</span>
+          </div>
+
+          <button type="button">EXCUIR</button>
+        </S.Options>
+
+        <S.Save>
+          <button type="button">SALVAR</button>
+        </S.Save>
+      </S.Form>
+
+      <Footer />
+    </S.Container>
+  );
+}
+
+export default Home;
