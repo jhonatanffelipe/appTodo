@@ -9,7 +9,6 @@ const TaskValidation = async (request, response, next) => {
     if (!title) return response.status(400).json({ message: 'title is required' })
     if (!description) return response.status(400).json({ message: 'description is required' })
     if (!when) return response.status(400).json({ message: 'when is required' })
-    if (isPast(new Date(when))) return response.status(400).json({ message: 'it is not possible to insert date in the past' })
 
     let exists
     if (request.params.id) {
@@ -19,6 +18,8 @@ const TaskValidation = async (request, response, next) => {
             'macaddress': { '$in': macaddress }
         })
     } else {
+        if (isPast(new Date(when))) return response.status(400).json({ message: 'it is not possible to insert date in the past' })
+
         exists = await TaskModel.findOne({
             'when': { '$eq': new Date(when) },
             'macaddress': { '$in': macaddress }
