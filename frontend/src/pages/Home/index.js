@@ -11,6 +11,7 @@ function Home() {
   const [filterActived, setFilterActived] = useState("all");
 
   const [tasks, setTasks] = useState([])
+  const [lateCount, setLateCount] = useState()
 
   async function loadTask() {
     await api.get(`/task/filter/${filterActived}/12:11:11:11:11:11`)
@@ -19,13 +20,25 @@ function Home() {
       })
   }
 
+  async function lateVerify() {
+    await api.get(`/task/filter/late/12:11:11:11:11:11`)
+      .then(response => {
+        setLateCount(response.data.length)
+      })
+  }
+
+  function Notification() {
+    setFilterActived('late')
+  }
+
   useEffect(() => {
     loadTask()
+    lateVerify()
   }, [filterActived])
 
   return (
     <S.Container>
-      <Header />
+      <Header lateCount={lateCount} clickNotification={Notification} />
       <S.FilterArea>
         <button type="button" onClick={() => setFilterActived('all')} >
           <FilterCard title="Todos" actived={filterActived === 'all'} />
@@ -45,13 +58,13 @@ function Home() {
       </S.FilterArea>
 
       <S.Title>
-        <h3>TAREFAS</h3>
+        <h3>{filterActived === 'late' ? 'TAREFAS ATRASADAS' : 'TAREFAS'}</h3>
       </S.Title>
 
       <S.Content>
         {
           tasks.map(task => (
-            <TaskCard 
+            <TaskCard
               key={task._id}
               title={task.title}
               when={task.when}

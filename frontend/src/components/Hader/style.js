@@ -36,9 +36,16 @@ export const RightSidde = styled.div`
     text-decoration: none;
     margin: 0 10px;
 
+
     &:hover{
       color: #43D9C7;
     }
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
   }
 
   #notification{
