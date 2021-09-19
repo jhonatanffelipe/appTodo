@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import { format } from 'date-fns'
 
 import * as S from './style'
-import iconDefault from '../../assets/default.png'
 import typeIcons from '../../utils/typeIcons';
 
 function TaskCard({ type, title, when, done }) {

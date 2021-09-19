@@ -14,7 +14,7 @@ function Header({ clickNotification, showNotification = true }) {
   const [redirect, setRedirect] = useState(false)
 
   async function lateVerify() {
-    await api.get(`/task/filter/late/12:11:11:11:11:11`)
+    await api.get(`/task/filter/late/${isConnected}`)
       .then(response => {
         setLateCount(response.data.length)
       })
