@@ -1,5 +1,5 @@
 import React from "react"
-import { View, ScrollView } from "react-native"
+import { View } from "react-native"
 
 import styles from "./style";
 
@@ -10,6 +10,7 @@ export default function Home() {
   return (
     <View style={styles.container}>
         <Header showNotification={true} showBack={false} />
+        <Footer icon={'plus'}/>
     </View>
   )
 }
