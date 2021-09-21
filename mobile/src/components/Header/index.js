@@ -1,7 +1,7 @@
 import React from "react"
 import { View, Image, TouchableOpacity, Text} from "react-native"
 
-import styles from "./style";
+import styles from "./styles";
 
 //ícones
 import logo from '../../assets/logo.png'

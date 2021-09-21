@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Image, Text, TouchableOpacity} from "react-native"
 
-import styles from "./style";
+import styles from "./styles";
 
 import check from '../../assets/check2x.png'
 import plus from '../../assets/plus2x.png'
