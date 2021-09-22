@@ -1,10 +1,11 @@
 import React, { useState } from "react"
-import { View, Text, TouchableOpacity } from "react-native"
+import { View, Text, TouchableOpacity, ScrollView } from "react-native"
 
 import styles from "./styles";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
+import TaskCard from "../../components/TaskCard";
 
 export default function Home() {
   const [filter, setFilter] = useState('today')
@@ -42,6 +43,25 @@ export default function Home() {
             : styles.filterTextInative}>Ano</Text>
         </TouchableOpacity >
       </View >
+
+      <View style={styles.title}>
+        <Text style={styles.titleText}>TAREFAS</Text>
+      </View>
+      
+      <ScrollView style={styles.content} contentContainerStyle={{alignItems: 'center'}}>
+        <TaskCard done={true}/>
+        <TaskCard />
+        <TaskCard />
+        <TaskCard />
+        <TaskCard />
+        <TaskCard />
+        <TaskCard />
+        <TaskCard />
+        <TaskCard />
+        <TaskCard />
+        <TaskCard />
+        <TaskCard />
+      </ScrollView>
 
       <Footer icon={'plus'} />
     </View >
