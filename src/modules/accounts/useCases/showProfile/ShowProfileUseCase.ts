@@ -5,7 +5,7 @@ import { toDTO } from '../../mapper/UserMap';
 import { IUsersRepository } from '../../repositories/IUsersRepository';
 
 @injectable()
-class ListUserByIdUseCase {
+class ShowProfileUseCase {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
@@ -22,4 +22,4 @@ class ListUserByIdUseCase {
   }
 }
 
-export { ListUserByIdUseCase };
+export { ShowProfileUseCase };

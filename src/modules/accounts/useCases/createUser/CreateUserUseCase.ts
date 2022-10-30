@@ -23,6 +23,15 @@ class CreateUserUseCase {
       throw new AppError('Senhas não são iguais, tente novamente!', 400);
     }
 
+    const validate = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z$*&@#]{6,}$/;
+
+    if (!validate.test(password)) {
+      throw new AppError(
+        `Senha incorreta! Deve conter no mínimo 6 caracteres, ao menos um dígito, ao menos uma letra minúscula e ao menos letra maiúscula`,
+        400,
+      );
+    }
+
     const passwordHash = await hash(password, 8);
 
     await this.usersRepository.create({

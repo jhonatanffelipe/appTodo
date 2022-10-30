@@ -6,7 +6,7 @@ export default async (): Promise<Connection> => {
   return createConnection(
     Object.assign(defaultOptions, {
       host: 'db',
-      database: 'apptodo',
+      database: 'turtle-todo',
     }),
   );
 };
