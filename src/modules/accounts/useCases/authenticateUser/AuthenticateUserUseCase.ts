@@ -9,12 +9,12 @@ import { IUsersRepository } from '../../repositories/IUsersRepository';
 import { IUsersTokensRepository } from '../../repositories/IUsersTokensRepository';
 
 const {
-  secret_access_token,
-  expires_in_access_token,
-  expires_access_token_hours,
-  secret_refresh_token,
-  expires_in_refresh_token,
-  expires_refresh_token_days,
+  secretAccessToken,
+  expiresInAccessToken,
+  expiresAccessTokenHours,
+  secretRefreshToken,
+  expiresInRefreshToken,
+  expiresRefreshTokenDays,
 } = auth;
 interface IRequest {
   email: string;
@@ -26,8 +26,8 @@ interface IResponse {
     name: string;
     email: string;
   };
-  access_token: string;
-  refresh_token: string;
+  accessToken: string;
+  refreshToken: string;
   iat: number;
   exp: number;
 }
@@ -55,7 +55,7 @@ class AuthenticateUserUseCase {
       throw new AppError('Email or password incorrect!', 400);
     }
 
-    const user_id = user.id ? user.id : '';
+    const userId = user.id ? user.id : '';
 
     const passwordMatch = await compare(password, user.password);
 
@@ -65,36 +65,36 @@ class AuthenticateUserUseCase {
 
     const dateNow = this.dateProvider.dateNow();
 
-    const expiredTokens = await this.usersTokensRepository.findByUserId(user_id);
+    const expiredTokens = await this.usersTokensRepository.findByUserId(userId);
 
     for await (const userToken of expiredTokens) {
-      if (userToken.refresh_token_expires_date <= dateNow) {
+      if (userToken.refreshTokenExpiresDate <= dateNow) {
         await this.usersTokensRepository.deleteById(userToken.id);
       }
     }
 
-    const access_token = sign({ email }, secret_access_token, {
+    const accessToken = sign({ email }, secretAccessToken, {
       subject: user.id,
-      expiresIn: expires_in_access_token,
+      expiresIn: expiresInAccessToken,
     });
 
-    const { iat, exp } = verify(access_token, secret_access_token) as IPayload;
+    const { iat, exp } = verify(accessToken, secretAccessToken) as IPayload;
 
-    const access_token_expires_date = this.dateProvider.addHours(expires_access_token_hours);
+    const accessTokenExpiresDate = this.dateProvider.addHours(expiresAccessTokenHours);
 
-    const refresh_token_expires_date = this.dateProvider.addDay(expires_refresh_token_days);
+    const refreshTokenExpiresDate = this.dateProvider.addDay(expiresRefreshTokenDays);
 
-    const refresh_token = sign({ email }, secret_refresh_token, {
+    const refreshToken = sign({ email }, secretRefreshToken, {
       subject: user.id,
-      expiresIn: expires_in_refresh_token,
+      expiresIn: expiresInRefreshToken,
     });
 
     await this.usersTokensRepository.create({
-      user_id,
-      access_token,
-      access_token_expires_date,
-      refresh_token,
-      refresh_token_expires_date,
+      userId,
+      accessToken,
+      accessTokenExpiresDate,
+      refreshToken,
+      refreshTokenExpiresDate,
     });
 
     const tokenReturn: IResponse = {
@@ -102,8 +102,8 @@ class AuthenticateUserUseCase {
         name: user.name,
         email: user.email,
       },
-      access_token,
-      refresh_token,
+      accessToken,
+      refreshToken,
       iat,
       exp,
     };

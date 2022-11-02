@@ -4,7 +4,7 @@ interface ICreateUserDTO {
   email: string;
   password: string;
   confirmPassword?: string;
-  avatar_url?: string;
+  avatar?: string;
 }
 
 export { ICreateUserDTO };

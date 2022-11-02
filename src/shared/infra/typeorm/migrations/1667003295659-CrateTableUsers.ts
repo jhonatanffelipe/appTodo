@@ -24,22 +24,22 @@ export class CrateTableUsers1667003295659 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'is_admin',
+            name: 'isAdmin',
             type: 'boolean',
             default: false,
           },
           {
-            name: 'avatar_url',
+            name: 'avatar',
             type: 'varchar',
             isNullable: true,
           },
           {
-            name: 'created_at',
+            name: 'createdAt',
             type: 'timestamp',
             default: 'now()',
           },
           {
-            name: 'updated_at',
+            name: 'updatedAt',
             type: 'timestamp',
             default: 'now()',
           },

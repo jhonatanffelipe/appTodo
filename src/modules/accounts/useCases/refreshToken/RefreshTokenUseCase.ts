@@ -7,11 +7,11 @@ import { AppError } from '../../../../shared/errors/AppError';
 import { IUsersTokensRepository } from '../../repositories/IUsersTokensRepository';
 
 const {
-  secret_access_token,
-  secret_refresh_token,
-  expires_in_access_token,
-  expires_access_token_hours,
-  expires_refresh_token_days,
+  secretAccessToken,
+  secretRefreshToken,
+  expiresInAccessToken,
+  expiresAccessTokenHours,
+  expiresRefreshTokenDays,
 } = auth;
 interface IPayload {
   sub: string;
@@ -19,8 +19,8 @@ interface IPayload {
 }
 
 interface IResponse {
-  access_token: string;
-  refresh_token: string;
+  accessToken: string;
+  refreshToken: string;
 }
 @injectable()
 class RefreshTokenUseCase {
@@ -31,11 +31,11 @@ class RefreshTokenUseCase {
     private dateProvider: IDateProvider,
   ) {}
 
-  async execute(refresh_token: string): Promise<IResponse> {
+  async execute(refreshToken: string): Promise<IResponse> {
     const payload = { sub: '', email: '' };
 
     try {
-      const { sub, email } = verify(refresh_token, secret_refresh_token) as IPayload;
+      const { sub, email } = verify(refreshToken, secretRefreshToken) as IPayload;
 
       payload.sub = sub;
       payload.email = email;
@@ -45,9 +45,9 @@ class RefreshTokenUseCase {
 
     const { sub, email } = payload;
 
-    const user_id = payload.sub;
+    const userId = payload.sub;
 
-    const userToken = await this.usersTokensRepository.findByUserIdAndRefreshToken(user_id, refresh_token);
+    const userToken = await this.usersTokensRepository.findByUserIdAndRefreshToken(userId, refreshToken);
 
     if (!userToken) {
       throw new AppError('Refresh token does not exists!');
@@ -55,25 +55,25 @@ class RefreshTokenUseCase {
 
     await this.usersTokensRepository.deleteById(userToken.id);
 
-    const access_token = sign({ email }, secret_access_token, {
+    const accessToken = sign({ email }, secretAccessToken, {
       subject: sub,
-      expiresIn: expires_in_access_token,
+      expiresIn: expiresInAccessToken,
     });
 
-    const access_token_expires_date = this.dateProvider.addHours(expires_access_token_hours);
-    const refresh_token_expires_date = this.dateProvider.addDay(expires_refresh_token_days);
+    const accessTokenExpiresDate = this.dateProvider.addHours(expiresAccessTokenHours);
+    const refreshTokenExpiresDate = this.dateProvider.addDay(expiresRefreshTokenDays);
 
     await this.usersTokensRepository.create({
-      user_id,
-      access_token,
-      access_token_expires_date,
-      refresh_token,
-      refresh_token_expires_date,
+      userId,
+      accessToken,
+      accessTokenExpiresDate,
+      refreshToken,
+      refreshTokenExpiresDate,
     });
 
     return {
-      access_token,
-      refresh_token,
+      accessToken,
+      refreshToken,
     };
   }
 }

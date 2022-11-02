@@ -12,18 +12,18 @@ class UsersTokensRepository implements IUsersTokensRepository {
   }
 
   async create({
-    user_id,
-    access_token,
-    access_token_expires_date,
-    refresh_token,
-    refresh_token_expires_date,
+    userId,
+    accessToken,
+    accessTokenExpiresDate,
+    refreshToken,
+    refreshTokenExpiresDate,
   }: ICreateUserTokenDTO): Promise<UserTokens | null> {
     const userToken = this.repository.create({
-      user_id,
-      access_token,
-      refresh_token,
-      access_token_expires_date,
-      refresh_token_expires_date,
+      userId,
+      accessToken,
+      refreshToken,
+      accessTokenExpiresDate,
+      refreshTokenExpiresDate,
     });
 
     await this.repository.save(userToken);
@@ -31,32 +31,32 @@ class UsersTokensRepository implements IUsersTokensRepository {
     return userToken ? userToken : null;
   }
 
-  async findByUserId(user_id: string): Promise<UserTokens[]> {
+  async findByUserId(userId: string): Promise<UserTokens[]> {
     const usersTokens = await this.repository.find({
-      user_id,
+      userId,
     });
     return usersTokens;
   }
 
-  async findByAccessToken(access_token: string): Promise<UserTokens | null> {
+  async findByAccessToken(accessToken: string): Promise<UserTokens | null> {
     const userToken = await this.repository.findOne({
-      access_token,
+      accessToken,
     });
     return userToken ? userToken : null;
   }
 
-  async findByUserIdAndAccessToken(user_id: string, access_token: string): Promise<UserTokens | null> {
+  async findByUserIdAndAccessToken(userId: string, accessToken: string): Promise<UserTokens | null> {
     const userToken = await this.repository.findOne({
-      user_id,
-      access_token,
+      userId,
+      accessToken,
     });
     return userToken ? userToken : null;
   }
 
-  async findByUserIdAndRefreshToken(user_id: string, refresh_token: string): Promise<UserTokens | null> {
+  async findByUserIdAndRefreshToken(userId: string, refreshToken: string): Promise<UserTokens | null> {
     const userToken = await this.repository.findOne({
-      user_id,
-      refresh_token,
+      userId,
+      refreshToken,
     });
     return userToken ? userToken : null;
   }
@@ -65,8 +65,8 @@ class UsersTokensRepository implements IUsersTokensRepository {
     await this.repository.delete(id);
   }
 
-  async deleteByUserId(user_id: string): Promise<void> {
-    await this.repository.delete({ user_id });
+  async deleteByUserId(userId: string): Promise<void> {
+    await this.repository.delete({ userId });
   }
 }
 

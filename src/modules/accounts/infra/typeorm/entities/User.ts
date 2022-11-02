@@ -16,16 +16,16 @@ class User {
   password: string;
 
   @Column()
-  is_admin?: boolean;
+  isAdmin?: boolean;
 
   @Column()
-  avatar_url?: string;
+  avatar?: string;
 
   @CreateDateColumn()
-  created_at?: Date;
+  createdAt?: Date;
 
   @CreateDateColumn()
-  updated_at?: Date;
+  updatedAt?: Date;
 
   constructor() {
     if (!this.id) {

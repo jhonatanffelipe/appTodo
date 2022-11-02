@@ -3,18 +3,18 @@ import { UserTokens } from '../infra/typeorm/entities/UserToken';
 
 interface IUsersTokensRepository {
   create({
-    user_id,
-    access_token,
-    refresh_token,
-    access_token_expires_date,
-    refresh_token_expires_date,
+    userId,
+    accessToken,
+    refreshToken,
+    accessTokenExpiresDate,
+    refreshTokenExpiresDate,
   }: ICreateUserTokenDTO): Promise<UserTokens | null>;
-  findByUserId(user_id: string): Promise<UserTokens[]>;
-  findByAccessToken(access_token: string): Promise<UserTokens | null>;
-  findByUserIdAndAccessToken(user_id: string, access_token: string): Promise<UserTokens | null>;
-  findByUserIdAndRefreshToken(user_id: string, refresh_token: string): Promise<UserTokens | null>;
+  findByUserId(userId: string): Promise<UserTokens[]>;
+  findByAccessToken(accessToken: string): Promise<UserTokens | null>;
+  findByUserIdAndAccessToken(userId: string, accessToken: string): Promise<UserTokens | null>;
+  findByUserIdAndRefreshToken(userId: string, refreshToken: string): Promise<UserTokens | null>;
   deleteById(id: string): Promise<void>;
-  deleteByUserId(user_id: string): Promise<void>;
+  deleteByUserId(userId: string): Promise<void>;
 }
 
 export { IUsersTokensRepository };

@@ -4,7 +4,7 @@ export class CreateUsersToken1667009547953 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'users_tokens',
+        name: 'usersTokens',
         columns: [
           {
             name: 'id',
@@ -12,33 +12,33 @@ export class CreateUsersToken1667009547953 implements MigrationInterface {
             isPrimary: true,
           },
           {
-            name: 'access_token',
+            name: 'accessToken',
             type: 'varchar',
           },
           {
-            name: 'access_token_expires_date',
+            name: 'accessTokenExpiresDate',
             type: 'timestamp',
           },
           {
-            name: 'refresh_token',
+            name: 'refreshToken',
             type: 'varchar',
           },
           {
-            name: 'refresh_token_expires_date',
+            name: 'refreshTokenExpiresDate',
             type: 'timestamp',
             isNullable: true,
           },
           {
-            name: 'user_id',
+            name: 'userId',
             type: 'uuid',
           },
           {
-            name: 'created_at',
+            name: 'createdAt',
             type: 'timestamp',
             default: 'now()',
           },
           {
-            name: 'updated_at',
+            name: 'updatedAt',
             type: 'timestamp',
             default: 'now()',
           },
@@ -48,7 +48,7 @@ export class CreateUsersToken1667009547953 implements MigrationInterface {
             name: 'FKUserToken',
             referencedTableName: 'users',
             referencedColumnNames: ['id'],
-            columnNames: ['user_id'],
+            columnNames: ['userId'],
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
           },
@@ -58,6 +58,6 @@ export class CreateUsersToken1667009547953 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('users_tokens');
+    await queryRunner.dropTable('usersTokens');
   }
 }

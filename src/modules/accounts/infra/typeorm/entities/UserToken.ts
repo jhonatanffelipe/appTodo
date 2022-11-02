@@ -3,32 +3,32 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { User } from './User';
 
-@Entity('users_tokens')
+@Entity('usersTokens')
 class UserTokens {
   @PrimaryColumn()
   id: string;
 
   @Column()
-  access_token: string;
+  accessToken: string;
 
   @Column()
-  access_token_expires_date: Date;
+  accessTokenExpiresDate: Date;
 
   @Column()
-  refresh_token: string;
+  refreshToken: string;
 
   @Column()
-  refresh_token_expires_date: Date;
+  refreshTokenExpiresDate: Date;
 
   @ManyToOne(() => User)
-  @JoinColumn({ name: 'user_id' })
-  user_id: string;
+  @JoinColumn({ name: 'userId' })
+  userId: string;
 
   @CreateDateColumn()
-  created_at: Date;
+  createdAt: Date;
 
   @CreateDateColumn()
-  updated_at: Date;
+  updatedAt: Date;
 
   constructor() {
     if (!this.id) {

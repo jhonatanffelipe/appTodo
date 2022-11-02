@@ -18,19 +18,19 @@ export async function ensureAuthenticated(request: Request, response: Response, 
     throw new AppError('Token é obrigatório!', 401);
   }
 
-  const [, access_token] = authHeader.split(' ');
+  const [, accessToken] = authHeader.split(' ');
 
   try {
-    const { sub: user_id } = verify(access_token, auth.secret_access_token) as IPayload;
+    const { sub: userId } = verify(accessToken, auth.secretAccessToken) as IPayload;
 
-    const user = await usersTokensRepository.findByUserIdAndAccessToken(user_id, access_token);
+    const user = await usersTokensRepository.findByUserIdAndAccessToken(userId, accessToken);
 
     if (!user) {
       throw new AppError('Token inválido!', 401);
     }
 
     request.user = {
-      id: user_id,
+      id: userId,
     };
     next();
   } catch {
