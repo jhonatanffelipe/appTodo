@@ -1,8 +1,9 @@
 import { inject, injectable } from 'tsyringe';
-import { AppError } from '../../../../shared/errors/AppError';
-import { IUserResponseDTO } from '../../dtos/IUserResponseDTO';
-import { toDTO } from '../../mapper/UserMap';
-import { IUsersRepository } from '../../repositories/IUsersRepository';
+
+import { AppError } from '@shared/errors/AppError';
+import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
+import { IUserResponseDTO } from '@modules/accounts/dtos/IUserResponseDTO';
+import { toUserDTO } from '@modules/accounts/mapper/UserMap';
 
 @injectable()
 class ShowProfileUseCase {
@@ -18,7 +19,7 @@ class ShowProfileUseCase {
       throw new AppError('Usuário não encontrado!');
     }
 
-    return toDTO(user);
+    return toUserDTO(user);
   }
 }
 

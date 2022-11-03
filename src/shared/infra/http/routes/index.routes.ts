@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import { userRoutes } from './user.routes';
-import { authenticateRoutes } from './authenticate.routes';
+import { authenticateRoutes } from '@modules/accounts/infra/http/routes/authenticate.routes';
+import { userRoutes } from '@modules/accounts/infra/http/routes/user.routes';
 
 const routes = Router();
 

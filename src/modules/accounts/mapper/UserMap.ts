@@ -1,9 +1,18 @@
-import { IUserResponseDTO } from '../dtos/IUserResponseDTO';
+import IResponseUserDTO from '../dtos/IResponseUserDTO';
 import { User } from '../infra/typeorm/entities/User';
 
-const toDTO = ({ email, name, id, avatar, createdAt, updatedAt }: User): IUserResponseDTO => {
-  const user = { email, name, id, avatar, createdAt, updatedAt };
+const toUserDTO = ({ id = '', name, email, avatar, isAdmin, createdAt, updatedAt }: User): IResponseUserDTO => {
+  const user = {
+    id,
+    name,
+    email,
+    avatar: avatar ? `${process.env.APP_API_URL}:${process.env.PORT}/avatar/${avatar}` : '',
+    isAdmin: isAdmin || false,
+    createdAt,
+    updatedAt,
+  };
+
   return user;
 };
 
-export { toDTO };
+export { toUserDTO };

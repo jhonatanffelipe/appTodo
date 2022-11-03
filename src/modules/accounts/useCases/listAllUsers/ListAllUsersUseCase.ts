@@ -1,7 +1,8 @@
 import { inject, injectable } from 'tsyringe';
-import { IUserResponseDTO } from '../../dtos/IUserResponseDTO';
-import { toDTO } from '../../mapper/UserMap';
-import { IUsersRepository } from '../../repositories/IUsersRepository';
+
+import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
+import { IUserResponseDTO } from '@modules/accounts/dtos/IUserResponseDTO';
+import { toUserDTO } from '@modules/accounts/mapper/UserMap';
 
 @injectable()
 class ListAllUsersUseCase {
@@ -14,7 +15,7 @@ class ListAllUsersUseCase {
     const users = await this.usersRepository.findAll();
 
     const usersFormated = users.map(user => {
-      return toDTO(user);
+      return toUserDTO(user);
     });
 
     return usersFormated;
