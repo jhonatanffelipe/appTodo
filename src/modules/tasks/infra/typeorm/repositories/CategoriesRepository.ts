@@ -13,6 +13,11 @@ class CategoriesRepository implements ICategoriesRepoitory {
     const categories = this.repository.find();
     return categories;
   }
+
+  public async findById(id: string): Promise<Category | undefined> {
+    const category = await this.repository.findOne(id);
+    return category;
+  }
 }
 
 export { CategoriesRepository };

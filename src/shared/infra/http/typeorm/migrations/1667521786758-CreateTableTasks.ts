@@ -28,12 +28,14 @@ export class CreateTableTasks1667521786758 implements MigrationInterface {
             type: 'varchar',
           },
           {
-            name: 'dateHour',
+            name: 'when',
             type: 'timestamp',
           },
           {
             name: 'done',
             type: 'boolean',
+            isNullable: true,
+            default: false,
           },
           {
             name: 'createdAt',
@@ -48,6 +50,7 @@ export class CreateTableTasks1667521786758 implements MigrationInterface {
           {
             name: 'deletedAt',
             type: 'timestamp',
+            isNullable: true,
             default: null,
           },
         ],

@@ -32,7 +32,7 @@ class Task {
   description: string;
 
   @Column()
-  dateHour: Date;
+  when: Date;
 
   @Column()
   done: boolean;
