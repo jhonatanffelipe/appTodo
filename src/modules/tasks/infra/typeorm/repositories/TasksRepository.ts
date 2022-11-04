@@ -4,8 +4,9 @@ import { Between, getRepository, LessThanOrEqual, MoreThanOrEqual, Repository } 
 import { Task } from '../entities/Task';
 
 interface IRequestListTasks {
-  initialDate: Date;
-  finalDate: Date;
+  userId: string;
+  initialDate: Date | null;
+  finalDate: Date | null;
 }
 
 class TasksRepository implements ITasksRepository {
@@ -34,9 +35,9 @@ class TasksRepository implements ITasksRepository {
     return task;
   }
 
-  async list({ initialDate, finalDate }: IRequestListTasks): Promise<Task[]> {
+  async list({ userId, initialDate, finalDate }: IRequestListTasks): Promise<Task[]> {
     const tasks = await this.repository.find({
-      where: { dateHour: Between(initialDate, finalDate) },
+      where: { userId, when: Between(initialDate, finalDate) },
     });
     return tasks;
   }

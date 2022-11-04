@@ -16,7 +16,7 @@ class ShowProfileUseCase {
     const user = await this.usersRepository.findById(id);
 
     if (!user) {
-      throw new AppError('Usuário não encontrado!');
+      throw new AppError('Token inválido!', 401);
     }
 
     return toUserDTO(user);

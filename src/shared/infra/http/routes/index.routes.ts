@@ -10,6 +10,6 @@ const routes = Router();
 routes.use('/users', userRoutes);
 routes.use('/auth', authenticateRoutes);
 routes.use('/categories', categoryRoutes);
-routes.use('/task', taskRoutes);
+routes.use('/tasks', taskRoutes);
 
 export { routes };

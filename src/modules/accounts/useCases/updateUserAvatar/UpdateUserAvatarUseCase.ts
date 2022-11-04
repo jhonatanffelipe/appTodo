@@ -18,7 +18,7 @@ class UpdateUserAvatarUseCase {
     const user = await this.usersRepository.findById(userId);
 
     if (!user) {
-      throw new AppError('Usuário não encontrado!');
+      throw new AppError('Token inválido!', 401);
     }
 
     if (user.avatar) {
@@ -26,10 +26,6 @@ class UpdateUserAvatarUseCase {
     }
 
     await this.storageProvider.save(avatarFile, 'avatar');
-
-    if (!user) {
-      throw new AppError('Usuário não encontrado!', 400);
-    }
 
     user.avatar = avatarFile;
 
