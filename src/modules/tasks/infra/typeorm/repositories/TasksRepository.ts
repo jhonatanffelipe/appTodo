@@ -48,6 +48,11 @@ class TasksRepository implements ITasksRepository {
     await this.repository.save(newTask);
     return newTask;
   }
+
+  async delete(id: string, userId: string): Promise<void> {
+    await this.repository.delete({ id, userId });
+    return;
+  }
 }
 
 export { TasksRepository, IRequestListTasks };

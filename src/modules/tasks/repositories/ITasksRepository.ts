@@ -7,6 +7,7 @@ interface ITasksRepository {
   upadate(data: Task): Promise<Task | undefined>;
   listById(id: string, userId: string): Promise<Task | undefined>;
   list(data: IRequestListTasks): Promise<Task[]>;
+  delete(id: string, userId: string): Promise<void>;
 }
 
 export { ITasksRepository };
