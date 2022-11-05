@@ -3,8 +3,8 @@ import { ICategoriesRepoitory } from '@modules/tasks/repositories/ICategoriesRep
 import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
 import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';
-import { IUpdateTaskDTO } from '../dtos/IUpdateTaskDTO';
-import { Task } from '../infra/typeorm/entities/Task';
+import { IUpdateTaskDTO } from '../../dtos/IUpdateTaskDTO';
+import { Task } from '../../infra/typeorm/entities/Task';
 
 @injectable()
 class UpdateTaskUseCase {

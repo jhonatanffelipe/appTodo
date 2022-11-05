@@ -1,18 +1,18 @@
-import { inject, injectable } from 'tsyringe';
 import { ITasksRepository } from '@modules/tasks/repositories/ITasksRepository';
-import { Task } from '../infra/typeorm/entities/Task';
+import { inject, injectable } from 'tsyringe';
+import { Task } from '../../infra/typeorm/entities/Task';
 
 @injectable()
-class ListTaskByIdUseCase {
+class DeleteTaskUseCase {
   constructor(
     @inject('TasksRepository')
     private tasksRepository: ITasksRepository,
   ) {}
 
   public async execute(id: string, userId: string): Promise<Task | undefined> {
-    const tasks = await this.tasksRepository.listById(id, userId);
-    return tasks;
+    await this.tasksRepository.delete(id, userId);
+    return;
   }
 }
 
-export { ListTaskByIdUseCase };
+export { DeleteTaskUseCase };

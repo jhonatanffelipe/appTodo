@@ -1,6 +1,6 @@
 import { ICategoriesRepoitory } from '@modules/tasks/repositories/ICategoriesRepository';
 import { inject, injectable } from 'tsyringe';
-import { Category } from '../infra/typeorm/entities/Category';
+import { Category } from '../../infra/typeorm/entities/Category';
 
 @injectable()
 class ListAllCategoriesUseCase {

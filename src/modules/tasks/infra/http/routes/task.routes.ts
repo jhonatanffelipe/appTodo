@@ -1,16 +1,16 @@
 import { Router } from 'express';
 
 import { ensureAuthenticated } from '@modules/accounts/infra/http/middlewares/ensureAuthenticated';
-import { CreateTaskController } from '@modules/tasks/useCases/CreateTaskController';
+import { CreateTaskController } from '@modules/tasks/useCases/createTask/CreateTaskController';
 import { CreateTaskValidation } from '../middlewares/celebrate/CreateTaskValidation';
-import { ListTasksController } from '@modules/tasks/useCases/ListTasksController';
+import { ListTasksController } from '@modules/tasks/useCases/listTasks/ListTasksController';
 import { ListTasksValidation } from '../middlewares/celebrate/ListTasksValidation';
-import { UpdateTaskController } from '@modules/tasks/useCases/UpadateTaskController';
+import { UpdateTaskController } from '@modules/tasks/useCases/updateTask/UpadateTaskController';
 import { UpdateTaskValidation } from '../middlewares/celebrate/UpdateTaskValidation';
-import { ListTaskByIdController } from '@modules/tasks/useCases/ListTaskByIdController';
+import { ListTaskByIdController } from '@modules/tasks/useCases/listTaskById/ListTaskByIdController';
 import { ListTaskByIdValidation } from '../middlewares/celebrate/ListTaskByIdValidation';
 import { DeleteTaskValidation } from '../middlewares/celebrate/DeleteTaskValidation';
-import { DeleteTaskController } from '@modules/tasks/useCases/DeleteTaskController';
+import { DeleteTaskController } from '@modules/tasks/useCases/deleteTask/DeleteTaskController';
 
 const taskRoutes = Router();
 
