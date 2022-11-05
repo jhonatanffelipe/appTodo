@@ -1,4 +1,3 @@
-import moment from 'moment';
 import { inject, injectable } from 'tsyringe';
 
 import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';

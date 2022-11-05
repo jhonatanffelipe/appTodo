@@ -1,4 +1,3 @@
-import { ICreateTaskDTO } from '@modules/tasks/dtos/ICreateTaskDTO';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import { CreateTaskUseCase } from './CreateTaskUseCase';
