@@ -6,15 +6,15 @@ import { ITasksRepository } from '@modules/tasks/repositories/ITasksRepository';
 import { AppError } from '@shared/errors/AppError';
 import { IListTasksDTO } from '../dtos/IListTasksDTO';
 import { Task } from '../infra/typeorm/entities/Task';
+import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
 
 @injectable()
 class ListTasksUseCase {
-  private initialDate: Date;
-  private finalDate: Date;
-
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+    @inject('DateProvider')
+    private dateProvider: IDateProvider,
     @inject('TasksRepository')
     private tasksRepository: ITasksRepository,
   ) {}
@@ -26,24 +26,12 @@ class ListTasksUseCase {
       throw new AppError('Token inválido!', 401);
     }
 
-    if (type === 'D') {
-      this.initialDate = moment(date).startOf('day').toDate();
-      this.finalDate = moment(date).endOf('day').toDate();
-    } else if (type === 'W') {
-      this.initialDate = moment(date).startOf('week').toDate();
-      this.finalDate = moment(date).endOf('week').toDate();
-    } else if (type === 'M') {
-      this.initialDate = moment(date).startOf('month').toDate();
-      this.finalDate = moment(date).endOf('month').toDate();
-    } else if (type === 'Y') {
-      this.initialDate = moment(date).startOf('year').toDate();
-      this.finalDate = moment(date).endOf('year').toDate();
-    }
+    const { initialDate, finalDate } = this.dateProvider.checkDate(date, type);
 
     const tasks = this.tasksRepository.list({
       userId,
-      initialDate: this.initialDate,
-      finalDate: this.finalDate,
+      initialDate,
+      finalDate,
     });
 
     return tasks;
