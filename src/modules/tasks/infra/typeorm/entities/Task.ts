@@ -17,10 +17,12 @@ class Task {
   @PrimaryColumn()
   id: string;
 
+  @Column()
   @ManyToOne(() => User)
   @JoinColumn({ name: 'userId' })
-  userId: string;
+  userId?: string;
 
+  @Column()
   @ManyToOne(() => Category)
   @JoinColumn({ name: 'categoryId' })
   categoryId: string;
@@ -38,13 +40,13 @@ class Task {
   done: boolean;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt?: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt?: Date;
 
   @DeleteDateColumn()
-  deletedAt: Date;
+  deletedAt?: Date;
 
   constructor() {
     if (!this.id) {

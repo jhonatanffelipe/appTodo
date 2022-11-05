@@ -4,7 +4,8 @@ import { IRequestListTasks } from '../infra/typeorm/repositories/TasksRepository
 
 interface ITasksRepository {
   create(data: ICreateTaskDTO): Promise<void>;
-  listById(id: string): Promise<Task | undefined>;
+  upadate(data: Task): Promise<Task | undefined>;
+  listById(id: string, userId: string): Promise<Task | undefined>;
   list(data: IRequestListTasks): Promise<Task[]>;
 }
 

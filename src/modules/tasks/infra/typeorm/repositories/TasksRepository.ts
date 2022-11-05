@@ -1,6 +1,6 @@
 import { ICreateTaskDTO } from '@modules/tasks/dtos/ICreateTaskDTO';
 import { ITasksRepository } from '@modules/tasks/repositories/ITasksRepository';
-import { Between, getRepository, LessThanOrEqual, MoreThanOrEqual, Repository } from 'typeorm';
+import { Between, getRepository, Repository } from 'typeorm';
 import { Task } from '../entities/Task';
 
 interface IRequestListTasks {
@@ -30,8 +30,8 @@ class TasksRepository implements ITasksRepository {
     return;
   }
 
-  async listById(id: string): Promise<Task | undefined> {
-    const task = await this.repository.findOne(id);
+  async listById(id: string, userId: string): Promise<Task | undefined> {
+    const task = await this.repository.findOne({ where: { id, userId } });
     return task;
   }
 
@@ -40,6 +40,13 @@ class TasksRepository implements ITasksRepository {
       where: { userId, when: Between(initialDate, finalDate) },
     });
     return tasks;
+  }
+
+  async upadate({ categoryId, title, description, when, done, id }: Task): Promise<Task | undefined> {
+    const task = await this.repository.findOne(id);
+    const newTask = this.repository.create({ ...task, categoryId, title, description, when, done });
+    await this.repository.save(newTask);
+    return newTask;
   }
 }
 
