@@ -1,4 +1,4 @@
-import { User } from '@modules/accounts/infra/typeorm/entities/User';
+import { User } from '@modules/users/infra/typeorm/entities/User';
 import { Category } from '@modules/tasks/infra/typeorm/entities/Category';
 import {
   Column,

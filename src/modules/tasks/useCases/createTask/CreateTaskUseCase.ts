@@ -1,6 +1,6 @@
 import { ITasksRepository } from '@modules/tasks/repositories/ITasksRepository';
 import { ICategoriesRepoitory } from '@modules/tasks/repositories/ICategoriesRepository';
-import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository';
+import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
 import { ICreateTaskDTO } from '@modules/tasks/dtos/ICreateTaskDTO';
 import { AppError } from '@shared/errors/AppError';
 import { inject, injectable } from 'tsyringe';

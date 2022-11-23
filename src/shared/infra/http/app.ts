@@ -12,6 +12,7 @@ import createConnection from './typeorm/index';
 import { routes } from './routes/index.routes';
 import '../../container';
 import upload from '@config/upload';
+import { ErrorHandler } from '@shared/errors/ErrorHandler';
 
 createConnection();
 const app = express();
@@ -23,19 +24,6 @@ app.use('/avatar', express.static(`${upload.tmpFolder}/avatar`));
 app.use(routes);
 app.use(errors());
 
-app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
-  if (err instanceof AppError) {
-    return response.status(err.statusCode).json({
-      message: err.message,
-    });
-  }
-
-  return response.status(500).json({
-    status: 'error',
-    message: `Internal server error - ${err.message}`,
-  });
-
-  next();
-});
+app.use(ErrorHandler);
 
 export { app };

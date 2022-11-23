@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { ensureAuthenticated } from '@modules/accounts/infra/http/middlewares/ensureAuthenticated';
+import { ensureAuthenticated } from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 import { CreateTaskController } from '@modules/tasks/useCases/createTask/CreateTaskController';
 import { CreateTaskValidation } from '../middlewares/celebrate/CreateTaskValidation';
 import { ListTasksController } from '@modules/tasks/useCases/listTasks/ListTasksController';

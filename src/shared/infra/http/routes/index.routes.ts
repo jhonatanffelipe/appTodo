@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import { authenticateRoutes } from '@modules/accounts/infra/http/routes/authenticate.routes';
-import { userRoutes } from '@modules/accounts/infra/http/routes/user.routes';
+import { authenticateRoutes } from '@modules/users/infra/http/routes/authenticate.routes';
+import { userRoutes } from '@modules/users/infra/http/routes/user.routes';
 import { categoryRoutes } from '@modules/tasks/infra/http/routes/category.routes';
 import { taskRoutes } from '@modules/tasks/infra/http/routes/task.routes';
 

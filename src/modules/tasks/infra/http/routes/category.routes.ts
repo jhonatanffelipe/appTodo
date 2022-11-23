@@ -1,4 +1,4 @@
-import { ensureAuthenticated } from '@modules/accounts/infra/http/middlewares/ensureAuthenticated';
+import { ensureAuthenticated } from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 import { ListAllCategoriesController } from '@modules/tasks/useCases/listAllCategories/ListAllCategoriesController';
 import { Router } from 'express';
 
