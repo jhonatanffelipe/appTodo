@@ -12,7 +12,7 @@ class UpdatePasswordController {
 
     await updatePasswordUseCase.execute({ userId: id, currentPassword, password, confirmPassword });
 
-    return response.status(200).send();
+    return response.status(204).send();
   }
 }
 

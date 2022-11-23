@@ -1,16 +1,22 @@
 import { IUpdatePasswordDTO } from '@modules/users/dtos/IUpdatePasswordDTO';
-import { ResetPasswordTokensRepository } from '@modules/users/infra/typeorm/repositories/ResetPasswordTokensRepository';
-import { UsersTokensRepository } from '@modules/users/infra/typeorm/repositories/UsersTokensRepository';
+import { IResetPasswordTokensRepository } from '@modules/users/repositories/IResetPasswordTokensRepository';
 import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
+import { IUsersTokensRepository } from '@modules/users/repositories/IUsersTokensRepository';
 import { IHashProvider } from '@shared/container/providers/HashProvider/IHashProvider';
 import { AppError } from '@shared/errors/AppError';
+import { inject, injectable } from 'tsyringe';
 
+@injectable()
 class UpdatePasswordUseCase {
   constructor(
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+    @inject('HashProvider')
     private hashProvider: IHashProvider,
-    private resetPasswordTokensRepository: ResetPasswordTokensRepository,
-    private usersTokensRepository: UsersTokensRepository,
+    @inject('ResetPasswordTokensRepository')
+    private resetPasswordTokensRepository: IResetPasswordTokensRepository,
+    @inject('UsersTokensRepository')
+    private usersTokensRepository: IUsersTokensRepository,
   ) {}
 
   public async execute({ userId, currentPassword, password, confirmPassword }: IUpdatePasswordDTO): Promise<void> {
