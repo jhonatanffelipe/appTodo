@@ -3,14 +3,13 @@ import 'reflect-metadata';
 import dotenv from 'dotenv';
 dotenv.config();
 
-import express, { NextFunction, Request, Response } from 'express';
+import express from 'express';
 import 'express-async-errors';
 import { errors } from 'celebrate';
 
-import { AppError } from '@shared/errors/AppError';
 import createConnection from './typeorm/index';
+import '@shared/container';
 import { routes } from './routes/index.routes';
-import '../../container';
 import upload from '@config/upload';
 import { ErrorHandler } from '@shared/errors/ErrorHandler';
 

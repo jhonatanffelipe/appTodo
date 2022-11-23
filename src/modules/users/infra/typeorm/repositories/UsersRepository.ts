@@ -22,7 +22,12 @@ class UsersRepository implements IUsersRepository {
   }
 
   async findById(id: string): Promise<User | null> {
-    const user = await this.repository.findOne(id);
+    const user = await this.repository.findOne({
+      where: {
+        id,
+      },
+      relations: ['resetPasswordToken'],
+    });
     return user ? user : null;
   }
 

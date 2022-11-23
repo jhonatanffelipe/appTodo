@@ -1,6 +1,6 @@
 import { container } from 'tsyringe';
 
-import './providers/index';
+import './providers';
 
 import { ITasksRepository } from '@modules/tasks/repositories/ITasksRepository';
 import { ICategoriesRepoitory } from '@modules/tasks/repositories/ICategoriesRepository';
