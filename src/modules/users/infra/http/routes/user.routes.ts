@@ -19,9 +19,11 @@ const updateUserAvatarController = new UpdateUserAvatarController();
 
 const createUserValidation = new CreateUserValidation();
 
-userRoutes.get('/profile', ensureAuthenticated, showProfileController.handle);
 userRoutes.post('/', createUserValidation.body, createUserController.handle);
-userRoutes.get('/', ensureAuthenticated, listAllUsersController.handle);
-userRoutes.patch('/avatar', ensureAuthenticated, uploadAvatar.single('avatar'), updateUserAvatarController.handle);
+
+userRoutes.use(ensureAuthenticated);
+userRoutes.get('/profile', showProfileController.handle);
+userRoutes.get('/', listAllUsersController.handle);
+userRoutes.patch('/avatar', uploadAvatar.single('avatar'), updateUserAvatarController.handle);
 
 export { userRoutes };
