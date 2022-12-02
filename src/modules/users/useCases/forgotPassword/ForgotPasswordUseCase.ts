@@ -41,7 +41,7 @@ class ForgotPasswordUseCase {
         file: forgotPasswordTemplate,
         variables: {
           name: user.name,
-          link: `http://localhost:3000/reset_password?token=${token}`,
+          link: `http://localhost:3333/reset_password?token=${token}`,
         },
       },
     });
