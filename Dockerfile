@@ -1,6 +1,6 @@
 FROM node:16.17.1
 
-WORKDIR /src/app/turtle-todo-backend
+WORKDIR /src/app/my-todo-backend
 
 COPY ./package*.json ./
 

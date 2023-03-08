@@ -36,12 +36,12 @@ class ForgotPasswordUseCase {
         name: user.name,
         email: user.email,
       },
-      subject: '[Turtle Todo] Recuperação de senha',
+      subject: '[My Todo] Recuperação de senha',
       templateData: {
         file: forgotPasswordTemplate,
         variables: {
           name: user.name,
-          link: `http://localhost:3333/reset_password?token=${token}`,
+          link: `${process.env.APP_FRONTEND_URL}/reset_password?token=${token}`,
         },
       },
     });

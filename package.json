@@ -1,8 +1,8 @@
 {
-  "name": "turtle-todo-backend",
+  "name": "my-todo-backend",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/jhonatanffelipe/turtle-todo-backend.git",
+  "repository": "https://github.com/jhonatanffelipe/my-todo-backend.git",
   "author": "jhonatanffelipe <jhonatanfnm@gmail.com>",
   "license": "MIT",
   "scripts": {

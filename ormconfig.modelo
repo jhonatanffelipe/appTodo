@@ -5,7 +5,7 @@
     "port": 5432,
     "username": "postgres",
     "password": "123456",
-    "database": "turtle-todo",
+    "database": "my-todo",
     "migrations": ["./src/shared/infra/http/typeorm/migrations/*.ts"],
     "entities": ["./src/modules/**/entities/*.ts"],
     "cli": {
@@ -19,7 +19,7 @@
     "port": 5432,
     "username": "postgres",
     "password": "123456",
-    "database": "turtle-todo",
+    "database": "my-todo",
     "migrationsTableName": "seeds",
     "migrations": ["./src/shared/infra/http/typeorm/seeds/*.ts"],
     "entities": ["./src/modules/**/entities/*.ts"],

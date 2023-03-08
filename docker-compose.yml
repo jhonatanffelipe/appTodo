@@ -3,26 +3,26 @@ version: '3.9'
 services:
   db:
     image: postgres
-    container_name: turtle-todo-db
+    container_name: my-todo-db
     environment:
       restart: never
       POSTGRES_PASSWORD: '123456'
-      POSTGRES_DB: 'turtle-todo'
+      POSTGRES_DB: 'my-todo'
     ports:
       - 5432:5432
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   app:
     build: .
-    container_name: turtle-todo-backend
+    container_name: my-todo-backend
     command: yarn dev
     environment:
       NODE_ENV: development
     ports:
       - '3333:3333'
     volumes:
-      - .:/src/app/turtle-todo-backend
-      - /src/app/turtle-todo-backend/node_modules
+      - .:/src/app/my-todo-backend
+      - /src/app/my-todo-backend/node_modules
     links:
       - db
     depends_on:
