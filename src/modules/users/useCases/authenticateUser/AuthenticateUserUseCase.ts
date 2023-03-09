@@ -26,10 +26,12 @@ interface IResponse {
     name: string;
     email: string;
   };
-  accessToken: string;
-  refreshToken: string;
-  iat: number;
-  exp: number;
+  token: {
+    accessToken: string;
+    refreshToken: string;
+    iat: number;
+    exp: number;
+  };
 }
 
 interface IPayload {
@@ -102,10 +104,12 @@ class AuthenticateUserUseCase {
         name: user.name,
         email: user.email,
       },
-      accessToken,
-      refreshToken,
-      iat,
-      exp,
+      token: {
+        accessToken,
+        refreshToken,
+        iat,
+        exp,
+      },
     };
 
     return tokenReturn;
