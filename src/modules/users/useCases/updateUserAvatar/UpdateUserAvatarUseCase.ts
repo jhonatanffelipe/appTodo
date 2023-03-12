@@ -3,7 +3,7 @@ import { inject, injectable } from 'tsyringe';
 import { AppError } from '@shared/errors/AppError';
 import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
 import IUpdateUserAvatarDTO from '@modules/users/dtos/IUpdateUserAvatarDTO';
-import { IStorageProvider } from '@shared/container/providers/StorageProvider/IStorageProvider';
+import { IStorageProvider } from '@shared/container/providers/StorageProvider/models/IStorageProvider';
 
 @injectable()
 class UpdateUserAvatarUseCase {

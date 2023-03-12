@@ -20,15 +20,6 @@ export class CreateUsersToken1667009547953 implements MigrationInterface {
             type: 'timestamp',
           },
           {
-            name: 'refreshToken',
-            type: 'varchar',
-          },
-          {
-            name: 'refreshTokenExpiresDate',
-            type: 'timestamp',
-            isNullable: true,
-          },
-          {
             name: 'userId',
             type: 'uuid',
           },

@@ -16,7 +16,7 @@ const categories = [
 ];
 
 export class SeedAddCategories1667519361835 implements MigrationInterface {
-  public async up(queryRunner: QueryRunner): Promise<void> {
+  public async up(): Promise<void> {
     const repository = getRepository(Category, 'seed');
 
     for await (const category of categories) {
@@ -25,7 +25,7 @@ export class SeedAddCategories1667519361835 implements MigrationInterface {
     }
   }
 
-  public async down(queryRunner: QueryRunner): Promise<void> {
+  public async down(): Promise<void> {
     const repository = getRepository(Category, 'seed');
 
     for await (const category of categories) {

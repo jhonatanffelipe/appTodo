@@ -8,14 +8,7 @@ import { AppError } from '@shared/errors/AppError';
 import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
 import { IUsersTokensRepository } from '@modules/users/repositories/IUsersTokensRepository';
 
-const {
-  secretAccessToken,
-  expiresInAccessToken,
-  expiresAccessTokenHours,
-  secretRefreshToken,
-  expiresInRefreshToken,
-  expiresRefreshTokenDays,
-} = auth;
+const { secretAccessToken, expiresInAccessToken, expiresAccessTokenHours } = auth;
 interface IRequest {
   email: string;
   password: string;
@@ -28,7 +21,6 @@ interface IResponse {
   };
   token: {
     accessToken: string;
-    refreshToken: string;
     iat: number;
     exp: number;
   };
@@ -70,7 +62,7 @@ class AuthenticateUserUseCase {
     const expiredTokens = await this.usersTokensRepository.findByUserId(userId);
 
     for await (const userToken of expiredTokens) {
-      if (userToken.refreshTokenExpiresDate <= dateNow) {
+      if (userToken.accessTokenExpiresDate <= dateNow) {
         await this.usersTokensRepository.deleteById(userToken.id);
       }
     }
@@ -84,19 +76,10 @@ class AuthenticateUserUseCase {
 
     const accessTokenExpiresDate = this.dateProvider.addHours(expiresAccessTokenHours);
 
-    const refreshTokenExpiresDate = this.dateProvider.addDay(expiresRefreshTokenDays);
-
-    const refreshToken = sign({ email }, secretRefreshToken, {
-      subject: user.id,
-      expiresIn: expiresInRefreshToken,
-    });
-
     await this.usersTokensRepository.create({
       userId,
       accessToken,
       accessTokenExpiresDate,
-      refreshToken,
-      refreshTokenExpiresDate,
     });
 
     const tokenReturn: IResponse = {
@@ -106,7 +89,6 @@ class AuthenticateUserUseCase {
       },
       token: {
         accessToken,
-        refreshToken,
         iat,
         exp,
       },

@@ -11,19 +11,11 @@ class UsersTokensRepository implements IUsersTokensRepository {
     this.repository = getRepository(UserTokens);
   }
 
-  async create({
-    userId,
-    accessToken,
-    accessTokenExpiresDate,
-    refreshToken,
-    refreshTokenExpiresDate,
-  }: ICreateUserTokenDTO): Promise<UserTokens | null> {
+  async create({ userId, accessToken, accessTokenExpiresDate }: ICreateUserTokenDTO): Promise<UserTokens | null> {
     const userToken = this.repository.create({
       userId,
       accessToken,
-      refreshToken,
       accessTokenExpiresDate,
-      refreshTokenExpiresDate,
     });
 
     await this.repository.save(userToken);
@@ -49,14 +41,6 @@ class UsersTokensRepository implements IUsersTokensRepository {
     const userToken = await this.repository.findOne({
       userId,
       accessToken,
-    });
-    return userToken ? userToken : null;
-  }
-
-  async findByUserIdAndRefreshToken(userId: string, refreshToken: string): Promise<UserTokens | null> {
-    const userToken = await this.repository.findOne({
-      userId,
-      refreshToken,
     });
     return userToken ? userToken : null;
   }

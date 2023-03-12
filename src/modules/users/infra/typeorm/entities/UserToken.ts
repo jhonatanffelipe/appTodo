@@ -14,12 +14,6 @@ class UserTokens {
   @Column()
   accessTokenExpiresDate: Date;
 
-  @Column()
-  refreshToken: string;
-
-  @Column()
-  refreshTokenExpiresDate: Date;
-
   @ManyToOne(() => User)
   @JoinColumn({ name: 'userId' })
   userId: string;
