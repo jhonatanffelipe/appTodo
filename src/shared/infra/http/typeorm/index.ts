@@ -5,8 +5,8 @@ export default async (): Promise<Connection> => {
 
   return createConnection(
     Object.assign(defaultOptions, {
-      host: 'db',
-      database: 'my-todo',
+      host: process.env.DB_HOST,
+      database: process.env.DATABASE,
     }),
   );
 };
