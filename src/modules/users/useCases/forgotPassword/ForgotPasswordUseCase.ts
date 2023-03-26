@@ -24,7 +24,7 @@ class ForgotPasswordUseCase {
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
-      throw new AppError('User does not exists.');
+      throw new AppError('Usuário não encontrado.');
     }
 
     const { token } = await this.resetPasswordTokensRepository.generateToken(String(user.id));
