@@ -20,8 +20,6 @@ class UpdateUserUseCase {
   public async execute({ id, name, email, currentPassword, password, confirmPassword }: IUpdateUserDTO): Promise<void> {
     const user = await this.usersRepository.findById(id);
 
-    console.log(id);
-
     if (!user) {
       throw new AppError('Usuário não encontrado.');
     }
