@@ -16,8 +16,10 @@ interface IRequest {
 
 interface IResponse {
   user: {
+    id: string;
     name: string;
     email: string;
+    avatar_url: string;
   };
   token: {
     accessToken: string;
@@ -46,7 +48,7 @@ class AuthenticateUserUseCase {
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
-      throw new AppError('Email or password incorrect!', 400);
+      throw new AppError('Credênciais incorretas!', 400);
     }
 
     const userId = user.id ? user.id : '';
@@ -54,7 +56,7 @@ class AuthenticateUserUseCase {
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new AppError('Email or password incorrect!', 400);
+      throw new AppError('Credênciais incorretas!', 400);
     }
 
     const dateNow = this.dateProvider.dateNow();
@@ -84,8 +86,10 @@ class AuthenticateUserUseCase {
 
     const tokenReturn: IResponse = {
       user: {
+        id: userId,
         name: user.name,
         email: user.email,
+        avatar_url: user.avatar ? `${process.env.APP_API_URL}:${process.env.PORT}/avatar/${user.avatar}` : '',
       },
       token: {
         accessToken,
