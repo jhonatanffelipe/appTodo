@@ -6,7 +6,7 @@ const toUserDTO = ({ id = '', name, email, avatar, isAdmin, createdAt, updatedAt
     id,
     name,
     email,
-    avatar_url: avatar ? `${process.env.APP_API_URL}:${process.env.PORT}/avatar/${avatar}` : '',
+    avatarUrl: avatar ? `${process.env.APP_API_URL}:${process.env.PORT}/avatar/${avatar}` : '',
     isAdmin: isAdmin || false,
     createdAt,
     updatedAt,

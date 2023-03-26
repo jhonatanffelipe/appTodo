@@ -19,7 +19,7 @@ interface IResponse {
     id: string;
     name: string;
     email: string;
-    avatar_url: string;
+    avatarUrl: string;
   };
   token: {
     accessToken: string;
@@ -89,7 +89,7 @@ class AuthenticateUserUseCase {
         id: userId,
         name: user.name,
         email: user.email,
-        avatar_url: user.avatar ? `${process.env.APP_API_URL}:${process.env.PORT}/avatar/${user.avatar}` : '',
+        avatarUrl: user.avatar ? `${process.env.APP_API_URL}:${process.env.PORT}/avatar/${user.avatar}` : '',
       },
       token: {
         accessToken,
