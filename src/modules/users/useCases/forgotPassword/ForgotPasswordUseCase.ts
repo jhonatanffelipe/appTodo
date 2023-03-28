@@ -21,7 +21,7 @@ class ForgotPasswordUseCase {
   ) {}
 
   public async execute({ email }: IRequest): Promise<void> {
-    const user = await this.usersRepository.findByEmail(email);
+    const user = await this.usersRepository.findByEmail(email.toLowerCase());
 
     if (!user) {
       throw new AppError('Usuário não encontrado.');

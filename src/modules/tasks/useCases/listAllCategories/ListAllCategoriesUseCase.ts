@@ -1,3 +1,5 @@
+import IResponseCategoryDTO from '@modules/tasks/dtos/IResponseCategoryDTO';
+import { toCategoryDTO } from '@modules/tasks/mapper/CategoryMap';
 import { ICategoriesRepoitory } from '@modules/tasks/repositories/ICategoriesRepository';
 import { inject, injectable } from 'tsyringe';
 import { Category } from '../../infra/typeorm/entities/Category';
@@ -9,9 +11,9 @@ class ListAllCategoriesUseCase {
     private categoriesRepository: ICategoriesRepoitory,
   ) {}
 
-  async execute(): Promise<Category[]> {
+  async execute(): Promise<IResponseCategoryDTO[]> {
     const categories = await this.categoriesRepository.list();
-    return categories;
+    return categories.map(category => toCategoryDTO(category));
   }
 }
 

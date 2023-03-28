@@ -1,4 +1,3 @@
-import { type } from 'os';
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateTableCategory1667484019770 implements MigrationInterface {
@@ -14,6 +13,10 @@ export class CreateTableCategory1667484019770 implements MigrationInterface {
           },
           {
             name: 'name',
+            type: 'varchar',
+          },
+          {
+            name: 'image',
             type: 'varchar',
           },
           {

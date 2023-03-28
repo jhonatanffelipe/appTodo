@@ -26,13 +26,13 @@ class UpdateUserUseCase {
 
     user.name = name;
 
-    const emailAlreadExists = await this.usersRepository.findByEmail(email);
+    const emailAlreadExists = await this.usersRepository.findByEmail(email.toLowerCase());
 
     if (emailAlreadExists && emailAlreadExists.id !== id) {
       throw new AppError('Já existe uma conta utilizando este e-mail.');
     }
 
-    user.email = email;
+    user.email = email.toLowerCase();
 
     if ((currentPassword || password || confirmPassword) && user.id) {
       const passwordMatch = await compare(currentPassword, user.password);

@@ -1,18 +1,17 @@
 import { Category } from '@modules/tasks/infra/typeorm/entities/Category';
-import { CategoriesRepository } from '@modules/tasks/infra/typeorm/repositories/CategoriesRepository';
-import { getRepository, MigrationInterface, QueryRunner } from 'typeorm';
+import { getRepository, MigrationInterface } from 'typeorm';
 
 const categories = [
-  { name: 'check-list' },
-  { name: 'food' },
-  { name: 'gyn' },
-  { name: 'notes' },
-  { name: 'people' },
-  { name: 'schedule' },
-  { name: 'school' },
-  { name: 'sports' },
-  { name: 'travel' },
-  { name: 'work' },
+  { name: 'checkList', image: 'checkList.svg' },
+  { name: 'food', image: 'food.svg' },
+  { name: 'gyn', image: 'gyn.svg' },
+  { name: 'notes', image: 'notes.svg' },
+  { name: 'people', image: 'people.svg' },
+  { name: 'schedule', image: 'schedule.svg' },
+  { name: 'school', image: 'school.svg' },
+  { name: 'sports', image: 'sports.svg' },
+  { name: 'travel', image: 'travel.svg' },
+  { name: 'work', image: 'work.svg' },
 ];
 
 export class SeedAddCategories1667519361835 implements MigrationInterface {

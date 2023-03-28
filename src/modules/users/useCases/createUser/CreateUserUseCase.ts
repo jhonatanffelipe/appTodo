@@ -36,7 +36,7 @@ class CreateUserUseCase {
 
     await this.usersRepository.create({
       name,
-      email,
+      email: email.toLowerCase(),
       password: passwordHash,
     });
   }

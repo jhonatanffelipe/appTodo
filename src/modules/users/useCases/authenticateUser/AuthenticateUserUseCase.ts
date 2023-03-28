@@ -45,7 +45,9 @@ class AuthenticateUserUseCase {
   ) {}
 
   async execute({ email, password }: IRequest): Promise<IResponse> {
-    const user = await this.usersRepository.findByEmail(email);
+    console.log(email.toLowerCase());
+
+    const user = await this.usersRepository.findByEmail(email.toLowerCase());
 
     if (!user) {
       throw new AppError('Credênciais incorretas!', 400);

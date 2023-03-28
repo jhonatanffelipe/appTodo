@@ -21,6 +21,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/avatar', express.static(`${upload.tmpFolder}/avatar`));
+app.use('/category', express.static(`${upload.tmpFolder}/category`));
 
 app.use(routes);
 app.use(errors());

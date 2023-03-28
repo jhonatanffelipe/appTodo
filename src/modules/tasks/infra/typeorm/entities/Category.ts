@@ -9,6 +9,9 @@ class Category {
   @Column()
   name: string;
 
+  @Column()
+  image: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
