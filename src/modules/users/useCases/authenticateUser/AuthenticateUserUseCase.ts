@@ -45,8 +45,6 @@ class AuthenticateUserUseCase {
   ) {}
 
   async execute({ email, password }: IRequest): Promise<IResponse> {
-    console.log(email.toLowerCase());
-
     const user = await this.usersRepository.findByEmail(email.toLowerCase());
 
     if (!user) {
