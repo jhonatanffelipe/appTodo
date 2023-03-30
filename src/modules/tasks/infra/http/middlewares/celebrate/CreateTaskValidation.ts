@@ -7,6 +7,7 @@ class CreateTaskValidation {
       title: Joi.string().required(),
       description: Joi.string().required(),
       when: Joi.date().required(),
+      done: Joi.boolean().required().allow(true, false),
     },
   });
 }

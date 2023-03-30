@@ -16,13 +16,14 @@ class TasksRepository implements ITasksRepository {
     this.repository = getRepository(Task);
   }
 
-  async create({ userId, categoryId, title, description, when }: ICreateTaskDTO): Promise<void> {
+  async create({ userId, categoryId, title, description, when, done }: ICreateTaskDTO): Promise<void> {
     const task = this.repository.create({
       userId,
       categoryId,
       title,
       description,
       when,
+      done,
     });
 
     await this.repository.save(task);
@@ -38,6 +39,7 @@ class TasksRepository implements ITasksRepository {
   async list({ userId, initialDate, finalDate }: IRequestListTasks): Promise<Task[]> {
     const tasks = await this.repository.find({
       where: { userId, when: Between(initialDate, finalDate) },
+      order: { when: 'DESC', createdAt: 'DESC' },
     });
     return tasks;
   }

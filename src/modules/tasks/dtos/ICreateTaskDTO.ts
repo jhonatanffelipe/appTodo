@@ -4,6 +4,7 @@ interface ICreateTaskDTO {
   title: string;
   description: string;
   when: Date;
+  done: boolean;
 }
 
 export { ICreateTaskDTO };

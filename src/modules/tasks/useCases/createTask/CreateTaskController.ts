@@ -7,9 +7,9 @@ class CreateTaskController {
     const createTaskUseCase = container.resolve(CreateTaskUseCase);
 
     const userId = request.user.id;
-    const { categoryId, title, description, when } = request.body;
+    const { categoryId, title, description, when, done } = request.body;
 
-    await createTaskUseCase.execute({ userId, categoryId, title, description, when });
+    await createTaskUseCase.execute({ userId, categoryId, title, description, when, done });
 
     return response.status(201).send();
   }

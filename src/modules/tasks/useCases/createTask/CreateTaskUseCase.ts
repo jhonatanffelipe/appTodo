@@ -15,7 +15,7 @@ class CreateTaskUseCase {
     @inject('TasksRepository')
     private tasksRepository: ITasksRepository,
   ) {}
-  public async execute({ userId, categoryId, title, description, when }: ICreateTaskDTO): Promise<void> {
+  public async execute({ userId, categoryId, title, description, when, done }: ICreateTaskDTO): Promise<void> {
     const user = this.usersRepository.findById(userId);
 
     if (!user) {
@@ -28,7 +28,7 @@ class CreateTaskUseCase {
       throw new AppError('Categoria não encontrada!', 400);
     }
 
-    await this.tasksRepository.create({ userId, categoryId, title, description, when });
+    await this.tasksRepository.create({ userId, categoryId, title, description, when, done });
   }
 }
 
