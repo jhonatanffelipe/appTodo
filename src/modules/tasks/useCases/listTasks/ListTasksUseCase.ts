@@ -1,11 +1,13 @@
+import { toCategoryDTO } from '@modules/tasks/mapper/CategoryMap';
 import { inject, injectable } from 'tsyringe';
 
 import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
 import { ITasksRepository } from '@modules/tasks/repositories/ITasksRepository';
 import { AppError } from '@shared/errors/AppError';
 import { IListTasksDTO } from '../../dtos/IListTasksDTO';
-import { Task } from '../../infra/typeorm/entities/Task';
 import { IDateProvider } from '@shared/container/providers/DateProvider/IDateProvider';
+import IResponseTaskDTO from '@modules/tasks/dtos/IResponseTaskDTO';
+import { toTaskDTO } from '@modules/tasks/mapper/TaskMap';
 
 @injectable()
 class ListTasksUseCase {
@@ -18,7 +20,7 @@ class ListTasksUseCase {
     private tasksRepository: ITasksRepository,
   ) {}
 
-  public async execute({ userId, date, type }: IListTasksDTO): Promise<Task[]> {
+  public async execute({ userId, date, type }: IListTasksDTO): Promise<IResponseTaskDTO[]> {
     const user = await this.usersRepository.findById(userId);
 
     if (!user) {
@@ -27,13 +29,15 @@ class ListTasksUseCase {
 
     const { initialDate, finalDate } = this.dateProvider.checkDate(date, type);
 
-    const tasks = this.tasksRepository.list({
+    const tasks = await this.tasksRepository.list({
       userId,
       initialDate,
       finalDate,
     });
 
-    return tasks;
+    return tasks.map(task => {
+      return toTaskDTO(task);
+    });
   }
 }
 

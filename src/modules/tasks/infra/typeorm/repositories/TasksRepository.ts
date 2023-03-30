@@ -40,6 +40,7 @@ class TasksRepository implements ITasksRepository {
     const tasks = await this.repository.find({
       where: { userId, when: Between(initialDate, finalDate) },
       order: { when: 'DESC', createdAt: 'DESC' },
+      relations: ['category'],
     });
     return tasks;
   }

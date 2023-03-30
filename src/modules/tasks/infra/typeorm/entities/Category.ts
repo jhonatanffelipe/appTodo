@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
+import { Task } from './Task';
 
 @Entity('categories')
 class Category {
@@ -17,6 +18,9 @@ class Category {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToMany(() => Task, task => task.category)
+  tasks: Task[];
 
   constructor() {
     if (!this.id) {

@@ -23,9 +23,10 @@ class Task {
   userId?: string;
 
   @Column()
-  @ManyToOne(() => Category)
-  @JoinColumn({ name: 'categoryId' })
   categoryId: string;
+
+  @ManyToOne(() => Category, category => category.tasks)
+  category?: Category;
 
   @Column()
   title: string;
