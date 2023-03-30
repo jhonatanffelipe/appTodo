@@ -1,46 +1,24 @@
 <div align="center">
-2
   <img src="https://raw.githubusercontent.com/jhonatanffelipe/my-todo-backend/master/src/assets/logo-purple.png" />
-3
   <br/>
-4
   <br/>
-5
 </div>
-6
-​
-7
+
 <p align="center">
-8
    <img alt="Tecnologias" src="https://img.shields.io/github/languages/count/jhonatanffelipe/my-todo-backend?color=6C5DD2">
-9
    <img alt="Tamanho do repositório" src="https://img.shields.io/github/repo-size/jhonatanffelipe/my-todo-backend?color=6C5DD2">
-10
    <img alt="Ultimo commit no Github" src="https://img.shields.io/github/last-commit/jhonatanffelipe/my-todo-backend?color=6C5DD2">
-11
    <img alt="Criado por" src="https://img.shields.io/badge/made%20by-jhonatanffelipe-%20?color=6C5DD2">
-12
    <img alt="Linguagens mais usadas no programa" src="https://img.shields.io/github/languages/top/jhonatanffelipe/my-todo-backend?color=6C5DD2">
-13
 </p>
-14
-​
-15
+
 # :rocket: Sobre o projeto
-16
-​
-17
+
 O My ToDo é um aplicativo inovador de gerenciamento de tarefas, criado para facilitar a vida das pessoas que precisam lidar com diversas atividades ao longo do dia. Desenvolvido com tecnologia de ponta, o My ToDo é baseado em nuvem, o que significa que os usuários podem acessá-lo a partir de qualquer dispositivo conectado à internet, como smartphones, tablets e computadores.
-18
-​
-19
+
 Uma das grandes vantagens do My ToDo é sua interface intuitiva e amigável, que torna a utilização do aplicativo simples e agradável. Além disso, o aplicativo é altamente personalizável, permitindo que os usuários configurem suas preferências e ajustem a interface de acordo com suas necessidades.
-20
-​
-21
+
 Com o My ToDo, gerenciar tarefas nunca foi tão fácil. Seja para uso pessoal ou profissional, o aplicativo oferece uma solução eficiente e prática para quem busca otimizar seu tempo e aumentar sua produtividade.
-22
-​
 
 # Tecnologias utilizadas
 
