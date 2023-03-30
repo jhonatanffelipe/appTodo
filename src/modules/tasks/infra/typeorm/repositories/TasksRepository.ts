@@ -39,7 +39,7 @@ class TasksRepository implements ITasksRepository {
   async list({ userId, initialDate, finalDate }: IRequestListTasks): Promise<Task[]> {
     const tasks = await this.repository.find({
       where: { userId, when: Between(initialDate, finalDate) },
-      order: { when: 'DESC', createdAt: 'DESC' },
+      order: { when: 'ASC', createdAt: 'ASC' },
       relations: ['category'],
     });
     return tasks;
