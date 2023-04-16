@@ -15,7 +15,6 @@
     },
     "resolveJsonModule": true,
     "allowJs": true,
-    "suppressImplicitAnyIndexErrors": true,
     "outDir": "build",
     "downlevelIteration": true,
     "allowSyntheticDefaultImports": true,
