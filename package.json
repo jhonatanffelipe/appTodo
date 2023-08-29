@@ -6,6 +6,7 @@
   "author": "jhonatanffelipe <jhonatanfnm@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "db": "docker run --name my-todo-db -e POSTGRES_DB=my-todo -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres",
     "up": "docker-compose up",
     "dev": "docker start my-todo-db && ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
     "stop": "docker stop my-todo-db",
